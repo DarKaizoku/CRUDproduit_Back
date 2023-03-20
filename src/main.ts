@@ -14,7 +14,6 @@ async function bootstrap() {
     .setTitle('Eval-Produit')
     .setDescription(`Si c'est gratuit, c'est vous le produit !!`)
     .setVersion('1.0')
-    .addTag('surprise')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
