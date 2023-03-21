@@ -84,14 +84,18 @@ export class ProduitsController {
         message: EMessageStatus.Unknown,
       };
     }
+
     const nomCheck = await Produit.findOneBy({ nom: updateProduitDto.nom });
-    if (nomCheck && nomCheck.id !== id) {
-      return {
-        status: EStatus.FAIL,
-        message: EMessageStatus.x2,
-        data: updateProduitDto.nom,
-      };
+    if (nomCheck) {
+      if (nomCheck!.id !== id) {
+        return {
+          status: EStatus.FAIL,
+          message: EMessageStatus.x2,
+          data: updateProduitDto.nom,
+        };
+      }
     }
+
     const dataUpdated = await this.produitsService.update(id, updateProduitDto);
     return {
       status: EStatus.OK,
